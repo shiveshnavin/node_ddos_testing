@@ -169,6 +169,7 @@ app.get('/all',function(req,res){
 })
 
 
+
 app.get('/',function(req,res){
 
     var loops=200;
@@ -204,7 +205,7 @@ var cb=function(res,data){
         
     }catch(e)
     {
-        
+        lg(JSON.stringify(e))
     }
 };
 
@@ -231,6 +232,8 @@ var cb=function(res,data){
     
 
 })
+
+
 
 
 app.get('/hello',function(req,res){
