@@ -171,13 +171,12 @@ app.get('/all',function(req,res){
 var startDos=function(url,loops,res)
 {
 
-    var itr=0;
+    var it=0;
 var cb=function(url_res,data){
 
     try{ 
 
-        lg('HTTP response  ' +(url_res.statusCode))
-        lg('HTTP response Size ' +data.length)
+        lg(''+it+'HTTP response=' +(url_res.statusCode)+' Len= ' +data.length) 
         if(it<loops)
         {
             it++;
