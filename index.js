@@ -202,7 +202,7 @@ app.get('/',function(req,res){
 
     var it=0
 
-    for(it=0;i<loops;it++)
+    for(it=0;it<loops;it++)
     {
         res.write('<br>Iteration : '+it+'/'+loops+' -- '+(100*(it/loops))+' % complete')
         gethtml(url)
