@@ -189,7 +189,10 @@ app.get('/',function(req,res){
 
 var cb=function(res,data){
 
-    try{
+    try{ }catch(e)
+    {
+        lg('Err'+JSON.stringify(e))
+    }
 
         lg('HTTP response  ' +(res.statusCode))
         lg('HTTP response Size ' +data.length)
@@ -203,10 +206,7 @@ var cb=function(res,data){
             res.end()
         }
         
-    }catch(e)
-    {
-        lg('Err'+JSON.stringify(e))
-    }
+   
 };
 
 
