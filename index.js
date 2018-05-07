@@ -205,7 +205,9 @@ app.get('/',function(req,res){
     for(it=0;it<loops;it++)
     {
         res.write('<br>Iteration : '+it+'/'+loops+' -- '+(100*(it/loops))+' % complete')
-        gethtml(url)
+        gethtml(url,function(data){
+            lg(data.length)
+        })
         
     }
 
