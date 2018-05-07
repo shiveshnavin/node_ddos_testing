@@ -26,7 +26,7 @@ var gethtml=function(url,callback){
     var parsed=urlparser.parse(url)
     request(url,function(err,res,body){
 
-        callback(body)
+        callback(res,body)
     })
     
 }
@@ -205,8 +205,9 @@ app.get('/',function(req,res){
     for(it=0;it<loops;it++)
     {
         res.write('<br>Iteration : '+it+'/'+loops+' -- '+(100*(it/loops))+' % complete')
-        gethtml(url,function(data){
-            lg(data.length)
+        gethtml(url,function(res,data){
+            lg('HTTP response  ' +res)
+            lg('HTTP response Size ' +data.length)
         })
         
     }
