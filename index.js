@@ -205,7 +205,7 @@ var cb=function(res,data){
         
     }catch(e)
     {
-        lg(JSON.stringify(e))
+        lg('Err'+JSON.stringify(e))
     }
 };
 
