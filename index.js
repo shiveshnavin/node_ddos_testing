@@ -176,7 +176,7 @@ var cb=function(url_res,data){
 
     try{ 
 
-        lg(''+it+'HTTP response=' +(url_res.statusCode)+' Len= ' +data.length) 
+        lg(''+it+' : HTTP response=' +(url_res.statusCode)+' Len= ' +data.length) 
         if(it<loops)
         {
             it++;
